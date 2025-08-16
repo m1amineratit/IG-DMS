@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spécifications techniques - Assistante commerciale Instagram automatisée</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .price-badge {
+            background: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        
+        .duration {
+            background: #17a2b8;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: #495057;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        li::marker {
+            color: #667eea;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tech-stack {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-stack h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .deliverables {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .deliverables h2 {
+            color: white;
+            border-bottom: 2px solid white;
+        }
+        
+        .flow-step {
+            background: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+            border-radius: 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                font-size: 12px;
+            }
+            .header {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .content-section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Spécifications techniques</h1>
+        <p style="font-size: 1.1em; margin: 10px 0;">Assistante commerciale Instagram automatisée</p>
+        <div class="price-badge">Prix: 7 000 MAD</div>
+        <div class="duration">Durée estimée: ~25 jours ouvrables</div>
+    </div>
+
+    <div class="content-section">
+        <h2>1. Aperçu</h2>
+        <p>Ce système automatise la gestion des ventes et du service client sur Instagram :</p>
+        <ul>
+            <li>Gère les demandes d'achat et les réclamations via les messages Instagram</li>
+            <li>Génère automatiquement des résumés et des fichiers quotidiens (commandes, réclamations, listes d'attente)</li>
+            <li>Permet au vendeur de configurer facilement le comportement de l'agent et les informations de sa boutique, sans connaissance technique</li>
+            <li>Possibilité de <strong>télécharger</strong> un fichier Excel des commandes et données, et <strong>d'importer</strong> un fichier Excel pour mise à jour (option secondaire au stockage en base de données)</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>2. Architecture du système</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🔗 API Instagram Graph</h3>
+                <p>Webhooks pour recevoir les DM et réponses aux stories, API de messagerie pour envoyer des réponses</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚙️ Backend Django</h3>
+                <p>Gère les webhooks, traite les intentions, enregistre les données et déclenche les tâches quotidiennes</p>
+            </div>
+            <div class="feature-card">
+                <h3>🗄️ Base de données</h3>
+                <p>PostgreSQL (ou MySQL en option) — stockage des commandes, réclamations et listes d'attente</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Stockage secondaire</h3>
+                <p>Fichiers Excel (XLSX) générés et importés via l'interface</p>
+            </div>
+            <div class="feature-card">
+                <h3>🤖 Couche IA</h3>
+                <p>LLM via OpenAI - Génère des réponses dynamiques et multilingues selon les instructions du vendeur</p>
+            </div>
+            <div class="feature-card">
+                <h3>📈 Tableau de bord</h3>
+                <p>Interface simple pour gérer les paramètres, l'accès API, les invites, et télécharger/téléverser les fichiers Excel, ainsi qu'ajouter des produits.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>3. Flux fonctionnels</h2>
+        
+        <h3>🛒 Flux d'achat</h3>
+        <div class="flow-step">1. Détection d'intention d'achat</div>
+        <div class="flow-step">2. Demande de capture d'écran, taille, et coordonnées client (nom, adresse, téléphone)</div>
+        <div class="flow-step">3. Enregistrement dans la base de données et dans un fichier Excel</div>
+
+        <h3>📞 Flux de réclamations</h3>
+        <div class="flow-step">1. Détection d'intention de réclamation</div>
+        <div class="flow-step">2. Collecte des détails nécessaires (capture d'écran, description du problème)</div>
+        <div class="flow-step">3. Enregistrement dans la base de données et dans un fichier Excel</div>
+
+        <h3>📅 Tâches quotidiennes automatiques</h3>
+        <ul>
+            <li>Génération de fichiers Excel : commandes.xlsx, reclamations.xlsx, liste_attente.xlsx</li>
+            <li>Calcul des statistiques : demandes totales, ventes, taux de conversion, répartition par produit</li>
+        </ul>
+
+        <h3>🚨 Alertes automatiques</h3>
+        <ul>
+            <li>Envoi d'un message prédéfini à une liste de contacts en cas de rupture de stock</li>
+        </ul>
+
+    </div>
+
+    <div class="content-section">
+        <h2>4. Exigences techniques</h2>
+        <div class="tech-stack">
+            <h3>🛠️ Stack technologique</h3>
+            <ul>
+                <li><strong>Framework :</strong> Django 5.x</li>
+                <li><strong>Base de données :</strong> PostgreSQL (option MySQL)</li>
+                <li><strong>IA :</strong> API OpenAI GPT-5</li>
+                <li><strong>Planification :</strong> Celery avec Redis</li>
+                <li><strong>Fichiers Excel :</strong> Python (pandas + openpyxl)</li>
+            </ul>
+        </div>
+        
+        <h3>🔒 Sécurité</h3>
+        <ul>
+            <li>Stockage sécurisé des clés API dans des variables d'environnement</li>
+            <li>Vérification des webhooks via le token Instagram</li>
+            <li>Stockage minimal des données personnelles</li>
+            <li>HTTPS obligatoire</li>
+        </ul>
+    </div>
+
+    <div class="content-section deliverables">
+        <h2>5. Livrables</h2>
+        <ul>
+            <li>Code source Django complet et fonctionnel</li>
+            <li>Interface d'administration pour la configuration vendeur</li>
+            <li>Intégration webhook Instagram et IA</li>
+            <li>Génération et importation de fichiers Excel</li>
+            <li>Rapports et fichiers quotidiens automatisés</li>
+            <li>Documentation d'utilisation</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08);">
+        <p style="font-size: 1.1em; color: #667eea;"><strong>Total du projet: 7 000 MAD</strong></p>
+        <p style="color: #6c757d;">Durée de développement: 25 jours ouvrables</p>
+    </div>
+
+    <script>
+        // Auto-print functionality for PDF generation
+        function generatePDF() {
+            window.print();
+        }
+        
+        // Add print button
+        const printBtn = document.createElement('button');
+        printBtn.innerHTML = '📄 Générer PDF';
+        printBtn.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            z-index: 1000;
+        `;
+        printBtn.onclick = generatePDF;
+        document.body.appendChild(printBtn);
+    </script>
+</body>
+</html>

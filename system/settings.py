@@ -133,3 +133,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET=os.getenv('CLIENT_SECRET')
 OPENROUTER_API_KEY=os.getenv('OPENROUTER_API_KEY')
+
+# Redis & Cache (hardcoded, not from env anymore)
+REDIS_URL = 'redis://default:bDQzhNsyBfReJvaNEMmoVEeiQbXjNZic@redis.railway.internal:6379'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+CELERY_BROKER_URL = REDIS_URL + '/0'
+CELERY_RESULT_BACKEND = REDIS_URL + '/0'
+TIME_ZONE = 'UTC'
+CELERY_TIMEZONE = TIME_ZONE
+
